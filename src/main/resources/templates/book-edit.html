@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Редактирование книги</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+
+<div class="container nt-5 mb-5">
+    <h1>Редактирование книги</h1>
+    <div th:each="el : ${books}">
+        <form method="post">
+            <input type="text" th:value="${el.Title}" name="title" placeholder="Введите название книги" class="form-control"><br>
+            <input type="text" th:value="${el.author}" name="author" placeholder="Введите автора" class="form-control"><br>
+            <input type="text" th:value="${el.bookYear}" name="book_year" placeholder="Введите год издания" class="form-control"><br>
+            <input type="text" th:value="${el.quantity}" name="quantity" placeholder="Введите количество доступных книг" class="form-control"><br>
+            <button type="submit" class="btn btn-success">Обновить</button>
+        </form>
+    </div>
+</div>
+
+<div th:insert="blocks/footer :: footer"></div>
+</body>
+</html>
