@@ -12,9 +12,9 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long ID;
 
-    private String Title;
-    private String Author;
-    private int BookYear, Quantity;
+    private String title;
+    private String author;
+    private int bookYear, quantity;
 
     public Long getID() {
         return ID;
@@ -25,44 +25,44 @@ public class Book {
     }
 
     public String getTitle() {
-        return Title;
+        return title;
     }
 
     public void setTitle(String title) {
-        Title = title;
+        this.title = title;
     }
 
     public String getAuthor() {
-        return Author;
+        return author;
     }
 
     public void setAuthor(String author) {
-        Author = author;
+        this.author = author;
     }
 
     public int getBookYear() {
-        return BookYear;
+        return bookYear;
     }
 
     public void setBookYear(int bookYear) {
-        BookYear = bookYear;
+        this.bookYear = bookYear;
     }
 
     public int getQuantity() {
-        return Quantity;
+        return quantity;
     }
 
     public void setQuantity(int quantity) {
-        Quantity = quantity;
+        this.quantity = quantity;
     }
 
     public Book() {
     }
 
     public Book(String title, String author, int bookYear, int quantity) {
-        Title = title;
-        Author = author;
-        BookYear = bookYear;
-        Quantity = quantity;
+        this.title = title;
+        this.author = author;
+        this.bookYear = bookYear;
+        this.quantity = quantity;
     }
 }

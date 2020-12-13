@@ -13,7 +13,8 @@
     <a class="p-2 text-dark" href="/books/add">Добавить книгу</a>
     <form method="post">
         <input type="text" name="filter">
-        <button type="submit">Найти</button>
+        <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+        <button type="submit" class="btn btn-success">Найти</button>
     </form><br>
 
     <div th:each="el : ${books}" class="alert alert-info nt-2">

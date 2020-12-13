@@ -16,6 +16,7 @@
         <p><b>Количество книг: </b><span th:text="${el.Quantity}"/></p>
         <a th:href="'/books/' + ${el.ID} + '/edit'" class="btn btn-warning">Редактировать</a><br>
         <form th:action="'/books/' + ${el.ID} + '/remove'" method="post">
+            <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
             <button class="btn btn-warning" type="submit">Удалить</button>
         </form>
 

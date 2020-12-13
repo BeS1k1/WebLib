@@ -16,6 +16,7 @@
             <input type="text" th:value="${el.author}" name="author" placeholder="Введите автора" class="form-control"><br>
             <input type="text" th:value="${el.bookYear}" name="book_year" placeholder="Введите год издания" class="form-control"><br>
             <input type="text" th:value="${el.quantity}" name="quantity" placeholder="Введите количество доступных книг" class="form-control"><br>
+            <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
             <button type="submit" class="btn btn-success">Обновить</button>
         </form>
     </div>

@@ -81,11 +81,11 @@ public class BookController {
         return "redirect:/books";
     }
 
-   /* @PostMapping("/books")
-    public String bookFilter(@PathVariable String filter, Model model){
-        List<Book> books = bookRepository.findByTitle(filter);
+    @PostMapping("/books")
+    public String bookFilter(@RequestParam String filter, Model model){
+        List<Book> books = bookRepository.findByAuthor(filter);
         model.addAttribute("books", books);
         return "/book";
-    }*/
+    }
 
 }
