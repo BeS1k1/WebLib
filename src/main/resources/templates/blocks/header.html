@@ -5,7 +5,7 @@
             <a class="p-2 text-dark" href="/">Главная</a>
             <a class="p-2 text-dark" href="/books">Книги</a>
             <a class="p-2 text-dark" href="/activity">Мероприятия</a>
-            <a class="p-2 text-dark" href="/lk">Личный кабинет</a>
+            <a class="p-2 text-dark" href="/user/profile">Личный кабинет</a>
         </nav>
         <form th:action="@{/logout}" method="post">
             <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
