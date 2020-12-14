@@ -14,15 +14,14 @@
         <p th:text="${el.Author}"/>
         <p><b>Год издания: </b><span th:text="${el.BookYear}"/></p>
         <p><b>Количество книг: </b><span th:text="${el.Quantity}"/></p>
-        <a th:href="'/books/' + ${el.ID} + '/edit'" class="btn btn-warning">Редактировать</a><br>
+        <a th:href="'/books/' + ${el.ID} + '/edit'" class="btn btn-warning">Редактировать</a>
         <form th:action="'/books/' + ${el.ID} + '/remove'" method="post">
-            <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+            <input type="hidden" name="_csrf" th:value="${_csrf.token}"/><br>
             <button class="btn btn-warning" type="submit">Удалить</button>
         </form>
 
     </div>
 </div>
 
-<div th:insert="blocks/footer :: footer"></div>
 </body>
 </html>

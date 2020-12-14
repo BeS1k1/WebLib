@@ -3,6 +3,7 @@ package com.library.web.controllers;
 import com.library.web.models.Book;
 import com.library.web.repo.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,11 +28,13 @@ public class BookController {
         return "book";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/books/add")
     public String bookAdd(Model model) {
         return "book-add";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/books/add")
     public String bookPostAdd(@RequestParam String title, @RequestParam String author, @RequestParam int book_year, @RequestParam int quantity, Model model){
         Book book = new Book(title, author, book_year, quantity);
@@ -51,6 +54,7 @@ public class BookController {
         return "book-details";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/books/{id}/edit")
     public String bookEdit(@PathVariable(value = "id") long id, Model model) {
         if(!bookRepository.existsById(id)){
@@ -63,6 +67,7 @@ public class BookController {
         return "book-edit";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/books/{id}/edit")
     public String bookPostUpdate(@PathVariable(value = "id") long id, @RequestParam String title, @RequestParam String author, @RequestParam int book_year, @RequestParam int quantity, Model model){
         Book book = bookRepository.findById(id).orElseThrow(IllegalStateException::new);
@@ -74,6 +79,7 @@ public class BookController {
         return "redirect:/books";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/books/{id}/remove")
     public String bookPostDelete(@PathVariable(value = "id") long id, Model model){
         Book book = bookRepository.findById(id).orElseThrow(IllegalStateException::new);

@@ -5,8 +5,12 @@
             <a class="p-2 text-dark" href="/">Главная</a>
             <a class="p-2 text-dark" href="/books">Книги</a>
             <a class="p-2 text-dark" href="/activity">Мероприятия</a>
-            <a class="p-2 text-dark" href="/contacts">Контакты</a>
+            <a class="p-2 text-dark" href="/lk">Личный кабинет</a>
         </nav>
-        <a class="btn btn-outline-primary" href="#">Sign up</a>
+        <form th:action="@{/logout}" method="post">
+            <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+            <input class="btn btn-outline-primary" type="submit" value="Войти/Выйти"/>
+        </form>
     </header>
 </div>
+
