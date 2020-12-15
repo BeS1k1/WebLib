@@ -5,9 +5,7 @@ import com.library.web.models.User;
 import com.library.web.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -67,27 +65,23 @@ public class UserController {
     }
 
     @GetMapping("/profile")
-    public String getProfile(Model model){
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userRepository.findByUsername(auth.getName());
+    public String getProfile(@AuthenticationPrincipal User user, Model model){
+
         model.addAttribute("username", user.getUsername());
 
         return "profile";
     }
 
     @GetMapping("/profile/edit")
-    public String editProfile(Model model){
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userRepository.findByUsername(auth.getName());
+    public String editProfile(@AuthenticationPrincipal User user, Model model){
+
         model.addAttribute("username", user.getUsername());
 
         return "profileEdit";
     }
 
     @PostMapping("/profile/edit")
-    public String updateProfile(@RequestParam String password){
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userRepository.findByUsername(auth.getName());
+    public String updateProfile(@AuthenticationPrincipal User user, @RequestParam String password){
         if (!StringUtils.isEmpty(password))
             user.setPassword(password);
 

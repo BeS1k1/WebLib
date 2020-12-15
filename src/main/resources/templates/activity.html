@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Книги</title>
+    <title>Мероприятия</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 </head>
@@ -9,9 +9,8 @@
 <header th:insert="blocks/header :: header"></header>
 
 <div class="container nt-5">
-    <h1>Книги</h1>
-    <div th:insert="blocks/showHide :: showHide"></div>
-    <a href="/books/add" th:classappend="${user.isAdmin}? 'show' : 'hide'" class="btn btn-success">Добавить книгу</a>
+    <h1>Мероприятия</h1>
+    <a href="/activity/add" class="btn btn-success">Добавить мероприятие</a>
     <form method="post">
         <br>
         <input type="text" name="filter">
@@ -19,10 +18,12 @@
         <button type="submit" class="btn btn-success">Найти</button>
     </form><br>
 
-    <div th:each="el : ${books}" class="alert alert-info nt-2">
-        <h3 th:text="${el.Title}"/>
-        <p th:text="${el.Author}"/>
-        <a th:href="'/books/' + ${el.ID}" class="btn btn-warning">Детальнее</a>
+    <div th:each="el : ${activity}" class="alert alert-info nt-2">
+        <h3 th:text="${el.title}"/>
+        <p th:text="${el.author}"/>
+        <p th:text="${el.date}"/>
+        <p th:text="${el.duration}"/>
+        <a th:href="'/activity/' + ${el.ID}" class="btn btn-warning">Детальнее</a>
     </div>
 </div>
 

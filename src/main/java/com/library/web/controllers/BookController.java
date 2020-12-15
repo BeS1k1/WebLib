@@ -1,9 +1,11 @@
 package com.library.web.controllers;
 
 import com.library.web.models.Book;
+import com.library.web.models.User;
 import com.library.web.repo.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,9 +24,10 @@ public class BookController {
     private BookRepository bookRepository;
 
     @GetMapping("/books")
-    public String book(Model model) {
+    public String book(@AuthenticationPrincipal User user, Model model) {
         Iterable<Book> books = bookRepository.findAll();
         model.addAttribute("books", books);
+        model.addAttribute("user", user);
         return "book";
     }
 
