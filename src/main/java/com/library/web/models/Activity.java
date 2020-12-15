@@ -11,7 +11,7 @@ public class Activity {
     private Long id;
     private String title;
     private Date date;
-    private int duration;
+    private int seats;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
@@ -20,17 +20,17 @@ public class Activity {
     public Activity(){
     }
 
-    public Activity(String title, Date date, int duration, User user) {
+    public Activity(String title, Date date, int seats, User user) {
         this.title = title;
         this.date = date;
-        this.duration = duration;
+        this.seats = seats;
         this.author = user;
     }
-/*
+
     public String getAuthorName(){
         return author !=null ? author.getUsername() : "<none>";
     }
-    */
+
 
     public Long getId() {
         return id;
@@ -56,12 +56,12 @@ public class Activity {
         this.date = date;
     }
 
-    public int getDuration() {
-        return duration;
+    public int getSeats() {
+        return seats;
     }
 
-    public void setDuration(int duration) {
-        this.duration = duration;
+    public void setSeats(int seats) {
+        this.seats = seats;
     }
 
     public User getAuthor() {

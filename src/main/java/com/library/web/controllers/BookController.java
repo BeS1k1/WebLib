@@ -91,9 +91,10 @@ public class BookController {
     }
 
     @PostMapping("/books")
-    public String bookFilter(@RequestParam String filter, Model model){
-        List<Book> books = bookRepository.findByAuthor(filter);
+    public String bookFilter(@AuthenticationPrincipal User user, @RequestParam String filter, Model model){
+        List<Book> books = bookRepository.findByAuthorContainingOrTitleAllIgnoreCaseContaining(filter, filter);
         model.addAttribute("books", books);
+        model.addAttribute("user", user);
         return "/book";
     }
 

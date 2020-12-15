@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Добавление мероприятия</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+
+<div class="container nt-5 mb-5">
+    <h1>Добавление мероприятия</h1>
+    <form action="/activity/add" method="post">
+        <input type="text" name="title" placeholder="Введите название мероприятия" class="form-control"><br>
+        <input type="date" name="date" placeholder="Введите дату начала" class="form-control"><br>
+        <input type="text" name="seats" placeholder="Сколько свободных мест?" class="form-control"><br>
+        <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+        <button type="submit" class="btn btn-success">Добавить мероприятие</button>
+    </form>
+</div>
+
+</body>
+</html>

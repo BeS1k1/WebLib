@@ -20,10 +20,10 @@
 
     <div th:each="el : ${activity}" class="alert alert-info nt-2">
         <h3 th:text="${el.title}"/>
-        <p th:text="${el.author}"/>
-        <p th:text="${el.date}"/>
-        <p th:text="${el.duration}"/>
-        <a th:href="'/activity/' + ${el.ID}" class="btn btn-warning">Детальнее</a>
+        <p><b>Организатор: </b><span  th:text="${el.authorName}"/></p>
+        <p><b>Дата начала: </b><span  th:text="${el.date}"/></p>
+        <p><b>Количество мест: </b><span  th:text="${el.seats}"/></p>
+        <a th:href="'/activity/' + ${el.id}" class="btn btn-warning">Детальнее</a>
     </div>
 </div>
 
