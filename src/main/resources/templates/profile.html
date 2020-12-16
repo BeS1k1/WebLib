@@ -6,8 +6,17 @@
 </head>
 <body>
     <header th:insert="blocks/header :: header"></header>
-    <h5 th:text="${username}"/>
+    <div class="container nt-5">
+        <h3 th:text="'Личный кабинет пользователя: ' + ${username}"/>
+        <a class="btn btn-primary" href="/user/profile/edit">Изменить пароль</a>
+        <div th:each="el : ${activity}" class="alert alert-info nt-2">
+            <br>
+            <h3 th:text="${el.title}"/>
+            <p><b>Организатор: </b><span  th:text="${el.authorName}"/></p>
+            <p><b>Дата начала: </b><span  th:text="${el.date}"/></p>
+        </div>
 
-    <a class="btn btn-primary" href="/user/profile/edit">Изменить пароль</a>
+
+    </div>
 </body>
 </html>

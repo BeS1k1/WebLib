@@ -1,7 +1,8 @@
 package com.library.web.controllers;
 
-import com.library.web.models.Role;
-import com.library.web.models.User;
+import com.library.web.models.*;
+import com.library.web.repo.ActivityRepository;
+import com.library.web.repo.TicketRepo;
 import com.library.web.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -11,9 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.util.StringUtils;
 
-import java.util.Arrays;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Controller
@@ -22,6 +21,12 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private TicketRepo ticketRepo;
+
+    @Autowired
+    private ActivityRepository activityRepository;
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
@@ -66,7 +71,13 @@ public class UserController {
 
     @GetMapping("/profile")
     public String getProfile(@AuthenticationPrincipal User user, Model model){
-
+        List<Ticket> tickets = ticketRepo.findByUser_id(user.getId());
+        List<Activity> activities = new ArrayList<>();
+        for(Ticket ticket : tickets){
+            Activity activity = ticket.getActivity();
+            activities.add(activity);
+        }
+        model.addAttribute("activity", activities);
         model.addAttribute("username", user.getUsername());
 
         return "profile";
