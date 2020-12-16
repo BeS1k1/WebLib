@@ -46,7 +46,7 @@ public class BookController {
     }
 
     @GetMapping("/books/{id}")
-    public String bookDetail(@PathVariable(value = "id") long id, Model model) {
+    public String bookDetail(@AuthenticationPrincipal User user, @PathVariable(value = "id") long id, Model model) {
         if(!bookRepository.existsById(id)){
             return "redirect:/books";
         }
@@ -54,6 +54,7 @@ public class BookController {
         ArrayList<Book> res = new ArrayList<>();
         book.ifPresent(res::add);
         model.addAttribute("books", res);
+        model.addAttribute("user", user);
         return "book-details";
     }
 

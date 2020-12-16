@@ -14,10 +14,11 @@
         <p th:text="${el.Author}"/>
         <p><b>Год издания: </b><span th:text="${el.BookYear}"/></p>
         <p><b>Количество книг: </b><span th:text="${el.Quantity}"/></p>
-        <a th:href="'/books/' + ${el.ID} + '/edit'" class="btn btn-warning">Редактировать</a>
+        <div th:insert="blocks/showHide :: showHide"></div>
+        <a th:href="'/books/' + ${el.ID} + '/edit'" th:classappend="${user.isAdmin}? 'show' : 'hide'" class="btn btn-warning">Редактировать</a>
         <form th:action="'/books/' + ${el.ID} + '/remove'" method="post">
             <input type="hidden" name="_csrf" th:value="${_csrf.token}"/><br>
-            <button class="btn btn-warning" type="submit">Удалить</button>
+            <button class="btn btn-warning" th:classappend="${user.isAdmin}? 'show' : 'hide'" type="submit">Удалить</button>
         </form>
 
     </div>

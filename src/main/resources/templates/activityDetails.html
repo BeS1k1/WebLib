@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Мероприятия</title>
+    <title>Мероприятие</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 </head>
@@ -9,22 +9,18 @@
 <header th:insert="blocks/header :: header"></header>
 
 <div class="container nt-5">
-    <h1>Мероприятия</h1>
-    <a href="/activity/add" class="btn btn-success">Добавить мероприятие</a>
-    <form method="post">
-        <br>
-        <input type="text" name="filter">
-        <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
-        <button type="submit" class="btn btn-success">Найти</button>
-    </form><br>
-
+    <h1>Мероприятие</h1>
     <div th:each="el : ${activity}" class="alert alert-info nt-2">
         <h3 th:text="${el.title}"/>
         <p><b>Организатор: </b><span  th:text="${el.authorName}"/></p>
-        <a th:href="'/activity/' + ${el.id}" class="btn btn-warning">Детальнее</a>
+        <p><b>Дата начала: </b><span  th:text="${el.date}"/></p>
+        <p><b>Количество мест: </b><span  th:text="${el.seats}"/></p>
+        <form method="post">
+            <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+            <div th:insert="blocks/showHide :: showHide"></div>
+            <button type="submit" th:classappend="${el.seats}<1? 'hide' : 'show'" class="btn btn-warning">Записаться</button>
+        </form>
     </div>
 </div>
-
-<div th:insert="blocks/footer :: footer"></div>
 </body>
 </html>
